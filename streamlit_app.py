@@ -9,7 +9,7 @@ import xgboost as xgb
 from sklearn.ensemble import RandomForestRegressor
 
 # Page Config
-st.set_page_config(page_title='Dividend Intelligence Framework', layout='wide', initial_sidebar_state='expanded')
+st.set_page_config(page_title='An Integrated AI Framework for Intelligent Financial Analytics, Portfolio Optimization, and Investment Decision Support', layout='wide', initial_sidebar_state='expanded')
 
 # Custom CSS
 st.markdown('<style>.main { background-color: #f8f9fa; } .stMetric { background-color: #ffffff; padding: 15px; border-radius: 10px; border: 1px solid #e0e0e0; } h1 { color: #1e3a8a; } h2 { color: #1e40af; border-bottom: 2px solid #1e40af; padding-bottom: 10px; }</style>', unsafe_allow_html=True)
