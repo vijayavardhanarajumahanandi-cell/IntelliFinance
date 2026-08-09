@@ -257,10 +257,13 @@ if page == 'Executive Summary':
         table = top10[['Ticker', 'Sector', 'Dividend Yield(%)', 'Dividend Score', 'Recommendation']].copy()
         table['Recommendation'] = table['Recommendation'].apply(rec_symbol)
         st.dataframe(
-            table,
-            width='stretch',
-            hide_index=True,
-            column_config={
+        table,
+        use_container_width=True,
+         hide_index=True,
+         column_config={
+     
+        
+             
                 'Dividend Score': st.column_config.ProgressColumn(
                     'Dividend Score',
                     min_value=float(df['Dividend Score'].min()),
@@ -288,7 +291,7 @@ if page == 'Executive Summary':
         layout = base_plotly_layout(height=300)
         layout['margin'] = dict(l=10, r=10, t=10, b=10)
         fig.update_layout(**layout, showlegend=True)
-        st.plotly_chart(fig, width='stretch')
+        st.plotly_chart(fig, use_container_width=True)
  
 # ============================================================================
 # RISK & PORTFOLIO
@@ -402,7 +405,7 @@ elif page == 'Explainable AI (XAI)':
         ax.yaxis.label.set_color(PARCHMENT)
         for spine in ax.spines.values():
             spine.set_color(LINE)
-    st.pyplot(fig, width='stretch')
+   st.pyplot(fig)
     plt.close(fig)
  
 # ============================================================================
