@@ -9,10 +9,25 @@ import xgboost as xgb
 from sklearn.ensemble import RandomForestRegressor
 
 # Page Config
-st.set_page_config(page_title='An Integrated AI Framework for Intelligent Financial Analytics, Portfolio Optimization, and Investment Decision Support', layout='wide', initial_sidebar_state='expanded')
+st.set_page_config(page_title='An Integrated AI Framework for Intelligent Financial Analytics, Portfolio Optimization, and Investment Decision Support', layout='wide')
 
-# Custom CSS
-st.markdown('<style>.main { background-color: #f8f9fa; } .stMetric { background-color: #ffffff; padding: 15px; border-radius: 10px; border: 1px solid #e0e0e0; } h1 { color: #1e3a8a; } h2 { color: #1e40af; border-bottom: 2px solid #1e40af; padding-bottom: 10px; }</style>', unsafe_allow_html=True)
+# --- CUSTOM CSS FOR PROFESSIONAL DARK THEME ---
+# Using single quotes for the markdown string to avoid conflict with the outer triple quotes
+st.markdown('''
+<style>
+.main { background-color: #0e1117; color: #fafafa; }
+.stMetric {
+    background-color: #1e2130;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #3e445e;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+h1, h2, h3 { color: #4dabf7 !important; }
+.stDataFrame { border: 1px solid #3e445e; border-radius: 8px; }
+.stSidebar { background-color: #161b22; }
+</style>
+''', unsafe_allow_html=True)
 
 @st.cache_resource
 def get_models(df):
@@ -30,12 +45,10 @@ def load_data():
 df = load_data()
 rf_model, xgb_model, X_train = get_models(df)
 
-# Sidebar Navigation
-st.sidebar.title('🏛️ Dividend Intel')
+st.sidebar.title('📊 Dividend Intel')
 page = st.sidebar.radio('Navigation', ['Executive Summary', 'Risk & Portfolio', 'ML Drivers', 'Explainable AI (XAI)'])
 
-# Header
-st.title('🏛️ Integrated Multi-Model ML Framework')
+st.title('🏛️ Financial Intelligence Dashboard')
 
 if page == 'Executive Summary':
     st.header('🏆 Top Stock Recommendations')
@@ -44,18 +57,19 @@ if page == 'Executive Summary':
     avg_yield = df.head(10)['Dividend Yield(%)'].mean()
     c2.metric('Avg. Portfolio Yield', f'{avg_yield:.2f}%')
     c3.metric('Market Coverage', f'{len(df)} Stocks')
-    st.dataframe(df[['Ticker', 'Sector', 'Dividend Yield(%)', 'Dividend Score', 'Recommendation']].head(10))
+    st.markdown('### Top 10 High-Confidence Assets')
+    st.dataframe(df[['Ticker', 'Sector', 'Dividend Yield(%)', 'Dividend Score', 'Recommendation']].head(10), use_container_width=True)
 
 elif page == 'Risk & Portfolio':
     st.header('🛡️ Risk Intelligence')
-    c1, col_risk = st.columns([2, 1])
-    with c1:
-        fig, ax = plt.subplots()
-        sns.scatterplot(x='Dividend Yield(%)', y='Payout Ratio(%)', hue='Risk Profile', size='Dividend Score', data=df, ax=ax)
-        st.pyplot(fig)
-    with col_risk:
-        st.metric('Expected Yield', '510.69%')
-        st.metric('95% VaR', '669.01%')
+    fig, ax = plt.subplots(facecolor='#0e1117')
+    ax.set_facecolor('#0e1117')
+    sns.scatterplot(x='Dividend Yield(%)', y='Payout Ratio(%)', hue='Risk Profile', size='Dividend Score', data=df, ax=ax, palette='viridis')
+    plt.setp(ax.get_xticklabels(), color='white')
+    plt.setp(ax.get_yticklabels(), color='white')
+    ax.xaxis.label.set_color('white')
+    ax.yaxis.label.set_color('white')
+    st.pyplot(fig)
 
 elif page == 'ML Drivers':
     st.header('🤖 Model Feature Importance')
@@ -66,17 +80,10 @@ elif page == 'ML Drivers':
 
 elif page == 'Explainable AI (XAI)':
     st.header('🧠 SHAP Local Explanations')
-    ticker = st.selectbox('Select Stock (Top 5):', df['Ticker'].head(5).tolist())
+    ticker = st.selectbox('Select Stock to Analyze:', df['Ticker'].head(10).tolist())
     idx = df[df['Ticker'] == ticker].index[0]
     explainer_rf = shap.TreeExplainer(rf_model)
     shap_values_rf = explainer_rf(X_train)
-    
-    st.subheader(f'Decision Path for {ticker}')
-    fig_wf, ax_wf = plt.subplots()
+    fig_wf, ax_wf = plt.subplots(facecolor='#0e1117')
     shap.plots.waterfall(shap_values_rf[idx], show=False)
-    st.pyplot(plt.gcf())
-    plt.clf()
-    
-    st.subheader('Feature Influence (Force Plot)')
-    shap.force_plot(explainer_rf.expected_value, explainer_rf.shap_values(X_train)[idx, :], X_train.iloc[idx, :], matplotlib=True, show=False)
     st.pyplot(plt.gcf())
