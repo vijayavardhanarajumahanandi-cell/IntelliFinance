@@ -8,6 +8,22 @@ import numpy as np
 # Page Config
 st.set_page_config(page_title="Financial Intelligence Framework", layout="wide")
 
+st.markdown('''
+<style>
+.main { background-color: #0e1117; color: #fafafa; }
+.stMetric {
+    background-color: #1e2130;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #3e445e;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+h1, h2, h3 { color: #4dabf7 !important; }
+.stDataFrame { border: 1px solid #3e445e; border-radius: 8px; }
+.stSidebar { background-color: #161b22; }
+</style>
+''', unsafe_allow_html=True)
+
 # Load Data
 @st.cache_data
 def load_data():
