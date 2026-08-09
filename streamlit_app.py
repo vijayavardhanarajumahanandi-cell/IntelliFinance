@@ -10,7 +10,7 @@ from sklearn.ensemble import RandomForestRegressor
 # PAGE CONFIG
 # ============================================================================
 st.set_page_config(
-    page_title='Dividend Intelligence Framework',
+    page_title='An Integrated AI Framework for Intelligent Financial Analytics, Portfolio Optimization, and Investment Decision Support',
     page_icon='🪙',
     layout='wide',
     initial_sidebar_state='expanded',
