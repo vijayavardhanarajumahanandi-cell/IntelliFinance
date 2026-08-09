@@ -405,7 +405,7 @@ elif page == 'Explainable AI (XAI)':
         ax.yaxis.label.set_color(PARCHMENT)
         for spine in ax.spines.values():
             spine.set_color(LINE)
-   st.pyplot(fig)
+    st.pyplot(fig)
     plt.close(fig)
  
 # ============================================================================
