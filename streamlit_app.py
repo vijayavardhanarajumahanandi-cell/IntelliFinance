@@ -229,7 +229,7 @@ page = st.sidebar.radio('Sections', ['Executive Summary', 'Risk & Portfolio', 'M
 st.markdown('''
 <div class="hero-header">
 <span class="eyebrow">Quantitative Dividend Research</span>
-<h1>Dividend Intelligence Framework</h1>
+<h1>An Integrated AI Framework for Intelligent Financial Analytics</h1>
 <p class="hero-subtitle">Ensemble scoring via Random Forest &amp; XGBoost — with per-stock SHAP attribution.</p>
 </div>
 ''', unsafe_allow_html=True)
@@ -412,7 +412,7 @@ elif page == 'Explainable AI (XAI)':
 # FOOTER
 # ============================================================================
 st.markdown(
-    '<div class="ledger-footer">DIVIDEND INTELLIGENCE FRAMEWORK — RANDOM FOREST + XGBOOST ENSEMBLE — SHAP ATTRIBUTION</div>',
+    '<div class="ledger-footer">An Integrated AI Framework for Intelligent Financial Analytics — RANDOM FOREST + XGBOOST ENSEMBLE — SHAP ATTRIBUTION</div>',
     unsafe_allow_html=True,
 )
  
