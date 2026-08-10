@@ -19,7 +19,7 @@
 
 ### 🔗 IntelliFinance Dashboard
 
-**[Launch IntelliFinance →](https://intellifinance-rnm5fgsicdedi3yyfhmbxt.streamlit.app/)**
+[Launch IntelliFinance →](https://intellifinance-wybmzufjnydddd93jeovnm.streamlit.app/)
 
 An interactive research-oriented financial analytics dashboard for exploring stock characteristics, machine-learning insights, risk analysis, and explainable investment recommendations.
 
