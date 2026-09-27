@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #071026;
+  --surface: #0b1420;
+  --muted-slate: #9aa6b2;
+  --accent: #00BFA6;
+  --gold: #C9A66B;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  @apply bg-bg text-white font-geist antialiased;
+  background-image: theme('backgroundImage.radial-glow');
+}
+
+.app-shell {
+  @apply min-h-screen flex;
+}
+
+.main-content {
+  @apply flex-1 p-6 lg:p-10 max-w-[1400px] mx-auto;
+}
+
+.card-glass {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 20px rgba(2,6,23,0.6);
+}
